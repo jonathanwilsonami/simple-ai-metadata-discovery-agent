@@ -1,0 +1,193 @@
+<style>
+.lx-highlight { position: relative; border-radius:3px; padding:1px 2px;}
+.lx-highlight .lx-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  background: #333;
+  color: #fff;
+  text-align: left;
+  border-radius: 4px;
+  padding: 6px 8px;
+  position: absolute;
+  z-index: 1000;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  max-width: 240px;
+  white-space: normal;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+.lx-highlight:hover .lx-tooltip { visibility: visible; opacity:1; }
+.lx-animated-wrapper { max-width: 100%; font-family: Arial, sans-serif; }
+.lx-controls {
+  background: #fafafa; border: 1px solid #90caf9; border-radius: 8px;
+  padding: 12px; margin-bottom: 16px;
+}
+.lx-button-row {
+  display: flex; justify-content: center; gap: 8px; margin-bottom: 12px;
+}
+.lx-control-btn {
+  background: #4285f4; color: white; border: none; border-radius: 4px;
+  padding: 8px 16px; cursor: pointer; font-size: 13px; font-weight: 500;
+  transition: background-color 0.2s;
+}
+.lx-control-btn:hover { background: #3367d6; }
+.lx-progress-container {
+  margin-bottom: 8px;
+}
+.lx-progress-slider {
+  width: 100%; margin: 0; appearance: none; height: 6px;
+  background: #ddd; border-radius: 3px; outline: none;
+}
+.lx-progress-slider::-webkit-slider-thumb {
+  appearance: none; width: 18px; height: 18px; background: #4285f4;
+  border-radius: 50%; cursor: pointer;
+}
+.lx-progress-slider::-moz-range-thumb {
+  width: 18px; height: 18px; background: #4285f4; border-radius: 50%;
+  cursor: pointer; border: none;
+}
+.lx-status-text {
+  text-align: center; font-size: 12px; color: #666; margin-top: 4px;
+}
+.lx-text-window {
+  font-family: monospace; white-space: pre-wrap; border: 1px solid #90caf9;
+  padding: 12px; max-height: 260px; overflow-y: auto; margin-bottom: 12px;
+  line-height: 1.6;
+}
+.lx-attributes-panel {
+  background: #fafafa; border: 1px solid #90caf9; border-radius: 6px;
+  padding: 8px 10px; margin-top: 8px; font-size: 13px;
+}
+.lx-current-highlight {
+  border-bottom: 4px solid #ff4444;
+  font-weight: bold;
+  animation: lx-pulse 1s ease-in-out;
+}
+@keyframes lx-pulse {
+  0% { text-decoration-color: #ff4444; }
+  50% { text-decoration-color: #ff0000; }
+  100% { text-decoration-color: #ff4444; }
+}
+.lx-legend {
+  font-size: 12px; margin-bottom: 8px;
+  padding-bottom: 8px; border-bottom: 1px solid #e0e0e0;
+}
+.lx-label {
+  display: inline-block;
+  padding: 2px 4px;
+  border-radius: 3px;
+  margin-right: 4px;
+  color: #000;
+}
+.lx-attr-key {
+  font-weight: 600;
+  color: #1565c0;
+  letter-spacing: 0.3px;
+}
+.lx-attr-value {
+  font-weight: 400;
+  opacity: 0.85;
+  letter-spacing: 0.2px;
+}
+
+/* Add optimizations with larger fonts and better readability for GIFs */
+.lx-gif-optimized .lx-text-window { font-size: 16px; line-height: 1.8; }
+.lx-gif-optimized .lx-attributes-panel { font-size: 15px; }
+.lx-gif-optimized .lx-current-highlight { text-decoration-thickness: 4px; }
+</style>
+    <div class="lx-animated-wrapper lx-gif-optimized">
+      <div class="lx-attributes-panel">
+        <div class="lx-legend">Highlights Legend: <span class="lx-label" style="background-color:#D2E3FC;">airport</span> <span class="lx-label" style="background-color:#C8E6C9;">communication_service</span> <span class="lx-label" style="background-color:#FEF0C3;">identifier</span> <span class="lx-label" style="background-color:#F9DEDC;">operational_restriction</span> <span class="lx-label" style="background-color:#FFDDBE;">runway</span></div>
+        <div id="attributesContainer"></div>
+      </div>
+      <div class="lx-text-window" id="textWindow">
+        ```
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<span class="lx-highlight lx-current-highlight" data-idx="0" style="background-color:#D2E3FC;">WASHINGTON DULLES INTL</span> (<span class="lx-highlight" data-idx="1" style="background-color:#FEF0C3;">IAD</span>)( <span class="lx-highlight" data-idx="2" style="background-color:#FEF0C3;">KIAD</span> ) 20 W UTC-5(-4DT) N38º56.85´ W77º27.60´ 312 B LRA Class I, ARFF Index E NOTAM FILE IAD <span class="lx-highlight" data-idx="3" style="background-color:#FFDDBE;">RWY 01C-19C: H11500X150 (CONC-GRVD)</span> S-200, D-250, 2D-450, 2D/2D2-875 PCR 1089 R/B/W/T HIRL CL RWY 01C: MALSR. TDZL. PAPI(P4L)-GA 3.0º TCH 70´. RVR-TMR RWY 19C: ALSF2. TDZL. PAPI(P4R)-GA 3.0º TCH 72´. RVR-TMR <span class="lx-highlight" data-idx="4" style="background-color:#FFDDBE;">RWY 01R-19L: H11500X150 (CONC-GRVD)</span> S-200, D-250, 2D-450, 2D/2D2-875 PCR 1005 R/B/W/U HIRL CL RWY 01R: ALSF2. TDZL. PAPI(P4R)-GA 3.0º TCH 72´. RVR-TMR RWY 19L: ALSF2. PAPI(P4L)-GA 3.0º TCH 75´. RVR-TMR Pole. 0.3% up. <span class="lx-highlight" data-idx="5" style="background-color:#FFDDBE;">RWY 12-30: H10501X150 (CONC-GRVD)</span> S-200, D-250, 2D-450, 2D/2D2-875 PCR 1108 R/B/W/T HIRL CL RWY 12: MALSR. TDZL. PAPI(P4R)-GA 3.0º TCH 66´. RVR-TR 0.3% down. RWY 30: REIL. PAPI(P4L)-GA 3.0º TCH 84´. RVR-TR <span class="lx-highlight" data-idx="6" style="background-color:#FFDDBE;">RWY 01L-19R: H9400X150 (CONC-GRVD)</span> S-200, <span class="lx-highlight" data-idx="7" style="background-color:#C8E6C9;">D-</span>250, 2D-450, 2D/2D2-875 PCR 1045 R/B/W/T HIRL CL RWY 01L: ALSF2. TDZL. PAPI(P4L)-GA 3.0º TCH 70´. RVR-TMR 0.3% down. RWY 19R: ALSF2. TDZL. PAPI(P4L)-GA 3.0º TCH 70´. RVR-TMR RUNWAY DECLARED DISTANCE INFORMATION RWY 01C: TORA-11500TODA-11500 ASDA-11500 LDA-11500 RWY 01L: TORA-9400 TODA-9400 ASDA-9400 LDA-9400 RWY 01R: TORA-11500TODA-11500 ASDA-11500 LDA-11500 RWY 12: TORA-10501 TODA-10501 ASDA-10501 LDA-10501 RWY 19C: TORA-11500TODA-11500 ASDA-11500 LDA-11089 RWY 19L: TORA-11500 TODA-11500 ASDA-11500 LDA-11500 RWY 19R: TORA-9400 TODA-9400 ASDA-9400 LDA-9400 RWY 30: TORA-10501 TODA-10501 ASDA-10501 LDA-10501 SERVICE: S4 FUEL 100LL, JET A OX 1, 3 LGT Rwy status lgts are in opn. AIRPORT REMARKS: Attended continuously. Large flocks of birds on and invof arpt/deer invof arpt. Pilots conducting EFVS ops; be aware LED ALS in use Rwy 01C. During periods of acft saturation long term parking may not be available. Services for fuel and go only will be available. <span class="lx-highlight" data-idx="8" style="background-color:#F9DEDC;">Flt trng btn 0300-1200Z‡ prohibited.</span> Itnrnt acft ctc FBO on 122.95 or 129.77 for svcs. ACR push backs and pwr from all apron positions rqr clnc from MWAA Ramp twr. <span class="lx-highlight" data-idx="9" style="background-color:#F9DEDC;">B747-8 rstd to max taxi speed 17 kt (20 MPH) on Twy J.</span> All acft with wingspan exceeding 118´ are rstd from using Taxilane A btn Taxilane A1 and A5. Txl E1 clsd to acft wingspan more than 118 ft. Engine run-ups btn 2200L and 0700L rqr prior apvl from arpt ops. Runup blx for Rwy 30 dsgnd as non-movement area. Taxilane C active, pushback clncs on North side of midfld terminal are onto Taxilane D only unless otherwise authorized. All 180º turns out of apron positions shall be made using minimum pwr. Rwy 30 departures use upper antenna for ATC communications. Cockpit over cntrln taxi prohibited at Twy Y int with Twy Y11. Judgemental oversteer rqred. ASDE-X in use. Operate transponders with altitude reporting mode and ADS-B (if equipped) enabled on all airport surfaces. Ldg fee. Flight Notification Service (ADCUS) available. AIRPORT MANAGER: 703-572-2730 WEATHER DATA SOURCES: ASOS 134.85 (571) 250-7817. TDWR. COMMUNICATIONS: D-ATIS 134.85 571-323-6374. <span class="lx-highlight" data-idx="10" style="background-color:#C8E6C9;">UNICOM 122.95</span> ® POTOMAC APP CON 128.525 (091º-240º) 126.1 (331º-090º) 120.45 (241-330º) Air surveillance radar unavbl abv 15,000´. TOWER 120.1 (Rwy 01R-19L) 120.25 (Rwy 01C-19C) 134.425 (Rwy 01L-19R, Rwy 12-30) MIDFIELD RAMP CON 129.55 GND CON 121.625 (West) 121.9 (East) CLNC DEL 135.7 ® POTOMAC DEP CON 126.65 (190º-300º) 125.05 (300º-010º) Air surveillance radar unavbl abv 15,000´. CPDLC (LOGON KUSA) PDC AIRSPACE: CLASS B See VFR Terminal Area Chart. RADIO AIDS TO NAVIGATION: NOTAM FILE IAD. ARMEL  (L) (L) VORW/DME 113.5 AML Chan 82 N38º56.08´ W77º28.00´ at fld. 296/8W. VOR unusable: 055º-092º blo 4,500´ 093º-115º 116º-210º blo 4,500´ DME unusable: 055º-210º byd 28 NM blo 2,500´ 211º-230º byd 30 NM blo 3,000´ ILS 111.3 I-OSZ Rwy 01C. Class IIE. ILS/DME 110.75 I-OIU Chan 44(Y) Rwy 01L. Class IIIE. LOC unusable byd 25º left of course. ILS/DME 110.1 I-IAD Chan 38 Rwy 01R. Class IIIE. ILS 109.3 I-AJU Rwy 12. Class IE. ILS 111.3 I-DLX Rwy 19C. Class IIIE. ILS/DME 110.1 I-SGC Chan 38 Rwy 19L. Class IIE. ILS/DME 110.75 I-ISU Chan 44(Y) Rwy 19R. Class IIIE. WASHINGTON COPTER H-10H, 12I, L-29E, 34E, 36I, A IAP, AD
+```
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      </div>
+      <div class="lx-controls">
+        <div class="lx-button-row">
+          <button class="lx-control-btn" onclick="playPause()">▶️ Play</button>
+          <button class="lx-control-btn" onclick="prevExtraction()">⏮ Previous</button>
+          <button class="lx-control-btn" onclick="nextExtraction()">⏭ Next</button>
+        </div>
+        <div class="lx-progress-container">
+          <input type="range" id="progressSlider" class="lx-progress-slider"
+                 min="0" max="10" value="0"
+                 onchange="jumpToExtraction(this.value)">
+        </div>
+        <div class="lx-status-text">
+          Entity <span id="entityInfo">1/11</span> |
+          Pos <span id="posInfo">[115-137]</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        const extractions = [{"index": 0, "class": "airport", "text": "WASHINGTON DULLES INTL", "color": "#D2E3FC", "startPos": 115, "endPos": 137, "beforeText": "```\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -", "extractionText": "WASHINGTON DULLES INTL", "afterText": " (IAD)( KIAD ) 20 W UTC-5(-4DT) N38\u00ba56.85\u00b4 W77\u00ba27.60\u00b4 312 B LRA Class I, ARFF Index E NOTAM FILE IAD RWY 01C-19C: H11500X150 (CONC-GRVD) S-200, D-250,", "attributesHtml": "<div><strong>class:</strong> airport</div><div><strong>attributes:</strong> {<span class=\"lx-attr-key\">name</span>: <span class=\"lx-attr-value\">WASHINGTON DULLES INTL</span>, <span class=\"lx-attr-key\">canonical_identifier</span>: <span class=\"lx-attr-value\">KIAD</span>, <span class=\"lx-attr-key\">section</span>: <span class=\"lx-attr-value\">AIRPORT</span>, <span class=\"lx-attr-key\">confidence</span>: <span class=\"lx-attr-value\">0.99</span>}</div>"}, {"index": 1, "class": "identifier", "text": "IAD", "color": "#FEF0C3", "startPos": 139, "endPos": 142, "beforeText": "```\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -WASHINGTON DULLES INTL (", "extractionText": "IAD", "afterText": ")( KIAD ) 20 W UTC-5(-4DT) N38\u00ba56.85\u00b4 W77\u00ba27.60\u00b4 312 B LRA Class I, ARFF Index E NOTAM FILE IAD RWY 01C-19C: H11500X150 (CONC-GRVD) S-200, D-250, 2D-4", "attributesHtml": "<div><strong>class:</strong> identifier</div><div><strong>attributes:</strong> {<span class=\"lx-attr-key\">value</span>: <span class=\"lx-attr-value\">IAD</span>, <span class=\"lx-attr-key\">identifier_type</span>: <span class=\"lx-attr-value\">FAA/IATA</span>, <span class=\"lx-attr-key\">section</span>: <span class=\"lx-attr-value\">AIRPORT</span>, <span class=\"lx-attr-key\">confidence</span>: <span class=\"lx-attr-value\">0.99</span>}</div>"}, {"index": 2, "class": "identifier", "text": "KIAD", "color": "#FEF0C3", "startPos": 145, "endPos": 149, "beforeText": "```\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -WASHINGTON DULLES INTL (IAD)( ", "extractionText": "KIAD", "afterText": " ) 20 W UTC-5(-4DT) N38\u00ba56.85\u00b4 W77\u00ba27.60\u00b4 312 B LRA Class I, ARFF Index E NOTAM FILE IAD RWY 01C-19C: H11500X150 (CONC-GRVD) S-200, D-250, 2D-450, 2D/", "attributesHtml": "<div><strong>class:</strong> identifier</div><div><strong>attributes:</strong> {<span class=\"lx-attr-key\">value</span>: <span class=\"lx-attr-value\">KIAD</span>, <span class=\"lx-attr-key\">identifier_type</span>: <span class=\"lx-attr-value\">ICAO</span>, <span class=\"lx-attr-key\">section</span>: <span class=\"lx-attr-value\">AIRPORT</span>, <span class=\"lx-attr-key\">confidence</span>: <span class=\"lx-attr-value\">0.99</span>}</div>"}, {"index": 3, "class": "runway", "text": "RWY 01C-19C: H11500X150 (CONC-GRVD)", "color": "#FFDDBE", "startPos": 238, "endPos": 273, "beforeText": "- - - - - - - - - - - - - -WASHINGTON DULLES INTL (IAD)( KIAD ) 20 W UTC-5(-4DT) N38\u00ba56.85\u00b4 W77\u00ba27.60\u00b4 312 B LRA Class I, ARFF Index E NOTAM FILE IAD ", "extractionText": "RWY 01C-19C: H11500X150 (CONC-GRVD)", "afterText": " S-200, D-250, 2D-450, 2D/2D2-875 PCR 1089 R/B/W/T HIRL CL RWY 01C: MALSR. TDZL. PAPI(P4L)-GA 3.0\u00ba TCH 70\u00b4. RVR-TMR RWY 19C: ALSF2. TDZL. PAPI(P4R)-GA", "attributesHtml": "<div><strong>class:</strong> runway</div><div><strong>attributes:</strong> {<span class=\"lx-attr-key\">designator</span>: <span class=\"lx-attr-value\">01C/19C</span>, <span class=\"lx-attr-key\">length_ft</span>: <span class=\"lx-attr-value\">11500</span>, <span class=\"lx-attr-key\">width_ft</span>: <span class=\"lx-attr-value\">150</span>, <span class=\"lx-attr-key\">surface</span>: <span class=\"lx-attr-value\">CONC-GRVD</span>, <span class=\"lx-attr-key\">airport</span>: <span class=\"lx-attr-value\">KIAD</span>, <span class=\"lx-attr-key\">section</span>: <span class=\"lx-attr-value\">RUNWAY</span>, <span class=\"lx-attr-key\">confidence</span>: <span class=\"lx-attr-value\">0.98</span>}</div>"}, {"index": 4, "class": "runway", "text": "RWY 01R-19L: H11500X150 (CONC-GRVD)", "color": "#FFDDBE", "startPos": 446, "endPos": 481, "beforeText": "2D/2D2-875 PCR 1089 R/B/W/T HIRL CL RWY 01C: MALSR. TDZL. PAPI(P4L)-GA 3.0\u00ba TCH 70\u00b4. RVR-TMR RWY 19C: ALSF2. TDZL. PAPI(P4R)-GA 3.0\u00ba TCH 72\u00b4. RVR-TMR ", "extractionText": "RWY 01R-19L: H11500X150 (CONC-GRVD)", "afterText": " S-200, D-250, 2D-450, 2D/2D2-875 PCR 1005 R/B/W/U HIRL CL RWY 01R: ALSF2. TDZL. PAPI(P4R)-GA 3.0\u00ba TCH 72\u00b4. RVR-TMR RWY 19L: ALSF2. PAPI(P4L)-GA 3.0\u00ba ", "attributesHtml": "<div><strong>class:</strong> runway</div><div><strong>attributes:</strong> {<span class=\"lx-attr-key\">designator</span>: <span class=\"lx-attr-value\">01R/19L</span>, <span class=\"lx-attr-key\">length_ft</span>: <span class=\"lx-attr-value\">11500</span>, <span class=\"lx-attr-key\">width_ft</span>: <span class=\"lx-attr-value\">150</span>, <span class=\"lx-attr-key\">surface</span>: <span class=\"lx-attr-value\">CONC-GRVD</span>, <span class=\"lx-attr-key\">airport</span>: <span class=\"lx-attr-value\">KIAD</span>, <span class=\"lx-attr-key\">section</span>: <span class=\"lx-attr-value\">RUNWAY</span>, <span class=\"lx-attr-key\">confidence</span>: <span class=\"lx-attr-value\">0.98</span>}</div>"}, {"index": 5, "class": "runway", "text": "RWY 12-30: H10501X150 (CONC-GRVD)", "color": "#FFDDBE", "startPos": 663, "endPos": 696, "beforeText": "5 PCR 1005 R/B/W/U HIRL CL RWY 01R: ALSF2. TDZL. PAPI(P4R)-GA 3.0\u00ba TCH 72\u00b4. RVR-TMR RWY 19L: ALSF2. PAPI(P4L)-GA 3.0\u00ba TCH 75\u00b4. RVR-TMR Pole. 0.3% up. ", "extractionText": "RWY 12-30: H10501X150 (CONC-GRVD)", "afterText": " S-200, D-250, 2D-450, 2D/2D2-875 PCR 1108 R/B/W/T HIRL CL RWY 12: MALSR. TDZL. PAPI(P4R)-GA 3.0\u00ba TCH 66\u00b4. RVR-TR 0.3% down. RWY 30: REIL. PAPI(P4L)-G", "attributesHtml": "<div><strong>class:</strong> runway</div><div><strong>attributes:</strong> {<span class=\"lx-attr-key\">designator</span>: <span class=\"lx-attr-value\">12/30</span>, <span class=\"lx-attr-key\">length_ft</span>: <span class=\"lx-attr-value\">10501</span>, <span class=\"lx-attr-key\">width_ft</span>: <span class=\"lx-attr-value\">150</span>, <span class=\"lx-attr-key\">surface</span>: <span class=\"lx-attr-value\">CONC-GRVD</span>, <span class=\"lx-attr-key\">airport</span>: <span class=\"lx-attr-value\">KIAD</span>, <span class=\"lx-attr-key\">section</span>: <span class=\"lx-attr-value\">RUNWAY</span>, <span class=\"lx-attr-key\">confidence</span>: <span class=\"lx-attr-value\">0.98</span>}</div>"}, {"index": 6, "class": "runway", "text": "RWY 01L-19R: H9400X150 (CONC-GRVD)", "color": "#FFDDBE", "startPos": 869, "endPos": 903, "beforeText": "2D/2D2-875 PCR 1108 R/B/W/T HIRL CL RWY 12: MALSR. TDZL. PAPI(P4R)-GA 3.0\u00ba TCH 66\u00b4. RVR-TR 0.3% down. RWY 30: REIL. PAPI(P4L)-GA 3.0\u00ba TCH 84\u00b4. RVR-TR ", "extractionText": "RWY 01L-19R: H9400X150 (CONC-GRVD)", "afterText": " S-200, D-250, 2D-450, 2D/2D2-875 PCR 1045 R/B/W/T HIRL CL RWY 01L: ALSF2. TDZL. PAPI(P4L)-GA 3.0\u00ba TCH 70\u00b4. RVR-TMR 0.3% down. RWY 19R: ALSF2. TDZL. P", "attributesHtml": "<div><strong>class:</strong> runway</div><div><strong>attributes:</strong> {<span class=\"lx-attr-key\">designator</span>: <span class=\"lx-attr-value\">01L/19R</span>, <span class=\"lx-attr-key\">length_ft</span>: <span class=\"lx-attr-value\">9400</span>, <span class=\"lx-attr-key\">width_ft</span>: <span class=\"lx-attr-value\">150</span>, <span class=\"lx-attr-key\">surface</span>: <span class=\"lx-attr-value\">CONC-GRVD</span>, <span class=\"lx-attr-key\">airport</span>: <span class=\"lx-attr-value\">KIAD</span>, <span class=\"lx-attr-key\">section</span>: <span class=\"lx-attr-value\">RUNWAY</span>, <span class=\"lx-attr-key\">confidence</span>: <span class=\"lx-attr-value\">0.98</span>}</div>"}, {"index": 7, "class": "communication_service", "text": "D-ATIS 134.85", "color": "#C8E6C9", "startPos": 911, "endPos": 913, "beforeText": ": MALSR. TDZL. PAPI(P4R)-GA 3.0\u00ba TCH 66\u00b4. RVR-TR 0.3% down. RWY 30: REIL. PAPI(P4L)-GA 3.0\u00ba TCH 84\u00b4. RVR-TR RWY 01L-19R: H9400X150 (CONC-GRVD) S-200, ", "extractionText": "D-", "afterText": "250, 2D-450, 2D/2D2-875 PCR 1045 R/B/W/T HIRL CL RWY 01L: ALSF2. TDZL. PAPI(P4L)-GA 3.0\u00ba TCH 70\u00b4. RVR-TMR 0.3% down. RWY 19R: ALSF2. TDZL. PAPI(P4L)-G", "attributesHtml": "<div><strong>class:</strong> communication_service</div><div><strong>attributes:</strong> {<span class=\"lx-attr-key\">service</span>: <span class=\"lx-attr-value\">D-ATIS</span>, <span class=\"lx-attr-key\">frequency</span>: <span class=\"lx-attr-value\">134.85</span>, <span class=\"lx-attr-key\">airport</span>: <span class=\"lx-attr-value\">KIAD</span>, <span class=\"lx-attr-key\">section</span>: <span class=\"lx-attr-value\">COMMUNICATIONS</span>, <span class=\"lx-attr-key\">confidence</span>: <span class=\"lx-attr-value\">0.98</span>}</div>"}, {"index": 8, "class": "operational_restriction", "text": "Flt trng btn 0300-1200Z\u2021 prohibited.", "color": "#F9DEDC", "startPos": 1878, "endPos": 1914, "beforeText": "re LED ALS in use Rwy 01C. During periods of acft saturation long term parking may not be available. Services for fuel and go only will be available. ", "extractionText": "Flt trng btn 0300-1200Z\u2021 prohibited.", "afterText": " Itnrnt acft ctc FBO on 122.95 or 129.77 for svcs. ACR push backs and pwr from all apron positions rqr clnc from MWAA Ramp twr. B747-8 rstd to max tax", "attributesHtml": "<div><strong>class:</strong> operational_restriction</div><div><strong>attributes:</strong> {<span class=\"lx-attr-key\">description</span>: <span class=\"lx-attr-value\">Flt trng btn 0300-1200Z\u2021 prohibited.</span>, <span class=\"lx-attr-key\">airport</span>: <span class=\"lx-attr-value\">KIAD</span>, <span class=\"lx-attr-key\">section</span>: <span class=\"lx-attr-value\">AIRPORT REMARKS</span>, <span class=\"lx-attr-key\">confidence</span>: <span class=\"lx-attr-value\">0.97</span>}</div>"}, {"index": 9, "class": "operational_restriction", "text": "B747-8 rstd to max taxi speed 17 kt (20 MPH) on Twy J.", "color": "#F9DEDC", "startPos": 2042, "endPos": 2096, "beforeText": "300-1200Z\u2021 prohibited. Itnrnt acft ctc FBO on 122.95 or 129.77 for svcs. ACR push backs and pwr from all apron positions rqr clnc from MWAA Ramp twr. ", "extractionText": "B747-8 rstd to max taxi speed 17 kt (20 MPH) on Twy J.", "afterText": " All acft with wingspan exceeding 118\u00b4 are rstd from using Taxilane A btn Taxilane A1 and A5. Txl E1 clsd to acft wingspan more than 118 ft. Engine ru", "attributesHtml": "<div><strong>class:</strong> operational_restriction</div><div><strong>attributes:</strong> {<span class=\"lx-attr-key\">description</span>: <span class=\"lx-attr-value\">B747-8 rstd to max taxi speed 17 kt (20 MPH) on Twy J.</span>, <span class=\"lx-attr-key\">airport</span>: <span class=\"lx-attr-value\">KIAD</span>, <span class=\"lx-attr-key\">section</span>: <span class=\"lx-attr-value\">AIRPORT REMARKS</span>, <span class=\"lx-attr-key\">confidence</span>: <span class=\"lx-attr-value\">0.97</span>}</div>"}, {"index": 10, "class": "communication_service", "text": "UNICOM 122.95", "color": "#C8E6C9", "startPos": 3003, "endPos": 3016, "beforeText": " (ADCUS) available. AIRPORT MANAGER: 703-572-2730 WEATHER DATA SOURCES: ASOS 134.85 (571) 250-7817. TDWR. COMMUNICATIONS: D-ATIS 134.85 571-323-6374. ", "extractionText": "UNICOM 122.95", "afterText": " \u00ae POTOMAC APP CON 128.525 (091\u00ba-240\u00ba) 126.1 (331\u00ba-090\u00ba) 120.45 (241-330\u00ba) Air surveillance radar unavbl abv 15,000\u00b4. TOWER 120.1 (Rwy 01R-19L) 120.25", "attributesHtml": "<div><strong>class:</strong> communication_service</div><div><strong>attributes:</strong> {<span class=\"lx-attr-key\">service</span>: <span class=\"lx-attr-value\">UNICOM</span>, <span class=\"lx-attr-key\">frequency</span>: <span class=\"lx-attr-value\">122.95</span>, <span class=\"lx-attr-key\">airport</span>: <span class=\"lx-attr-value\">KIAD</span>, <span class=\"lx-attr-key\">section</span>: <span class=\"lx-attr-value\">COMMUNICATIONS</span>, <span class=\"lx-attr-key\">confidence</span>: <span class=\"lx-attr-value\">0.98</span>}</div>"}];
+        let currentIndex = 0;
+        let isPlaying = false;
+        let animationInterval = null;
+        let animationSpeed = 1.0;
+
+        function updateDisplay() {
+          const extraction = extractions[currentIndex];
+          if (!extraction) return;
+
+          document.getElementById('attributesContainer').innerHTML = extraction.attributesHtml;
+          document.getElementById('entityInfo').textContent = (currentIndex + 1) + '/' + extractions.length;
+          document.getElementById('posInfo').textContent = '[' + extraction.startPos + '-' + extraction.endPos + ']';
+          document.getElementById('progressSlider').value = currentIndex;
+
+          const playBtn = document.querySelector('.lx-control-btn');
+          if (playBtn) playBtn.textContent = isPlaying ? '⏸ Pause' : '▶️ Play';
+
+          const prevHighlight = document.querySelector('.lx-text-window .lx-current-highlight');
+          if (prevHighlight) prevHighlight.classList.remove('lx-current-highlight');
+          const currentSpan = document.querySelector('.lx-text-window span[data-idx="' + currentIndex + '"]');
+          if (currentSpan) {
+            currentSpan.classList.add('lx-current-highlight');
+            currentSpan.scrollIntoView({block: 'center', behavior: 'smooth'});
+          }
+        }
+
+        function nextExtraction() {
+          currentIndex = (currentIndex + 1) % extractions.length;
+          updateDisplay();
+        }
+
+        function prevExtraction() {
+          currentIndex = (currentIndex - 1 + extractions.length) % extractions.length;
+          updateDisplay();
+        }
+
+        function jumpToExtraction(index) {
+          currentIndex = parseInt(index);
+          updateDisplay();
+        }
+
+        function playPause() {
+          if (isPlaying) {
+            clearInterval(animationInterval);
+            isPlaying = false;
+          } else {
+            animationInterval = setInterval(nextExtraction, animationSpeed * 1000);
+            isPlaying = true;
+          }
+          updateDisplay();
+        }
+
+        window.playPause = playPause;
+        window.nextExtraction = nextExtraction;
+        window.prevExtraction = prevExtraction;
+        window.jumpToExtraction = jumpToExtraction;
+
+        updateDisplay();
+      })();
+    </script>
